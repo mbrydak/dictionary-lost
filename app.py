@@ -57,34 +57,11 @@ cartesian_product = list(itertools.product(*list_of_lists))
 
 # turn each tuple in cartesian_product into a string and append to complete_wordlist
 for tuple in cartesian_product:
-    complete_wordlist.append(" ".join(tuple))
-
-# replace all spaces in complete_wordlist with a hyphen and append to complete_wordlist_no_spaces
-complete_wordlist_no_spaces_hyphen = []
-for word in complete_wordlist:
-    complete_wordlist_no_spaces_hyphen.append(word.replace(" ", "-"))
-
-# replace all spaces in complete_wordlist with an underscore and append to complete_wordlist_no_spaces
-complete_wordlist_no_spaces_underscore = []
-for word in complete_wordlist:
-    complete_wordlist_no_spaces_underscore.append(word.replace(" ", "_"))
-
-# delete all spaces from complete_wordlist and append to complete_wordlist_no_spaces
-complete_wordlist_no_spaces = []
-for word in complete_wordlist:
-    complete_wordlist_no_spaces.append(word.replace(" ", ""))
-
-# combine complete_wordlist_no_spaces_hyphen and complete_wordlist_no_spaces and append to complete_wordlist_final
-complete_wordlist_final = []
-for word in complete_wordlist_no_spaces_hyphen:
-    complete_wordlist_final.append(word)
-for word in complete_wordlist_no_spaces_underscore:
-    complete_wordlist_final.append(word)
-for word in complete_wordlist_no_spaces:
-    complete_wordlist_final.append(word)
+    for seperator in [" ", "-", "_", ""]:
+        complete_wordlist.append(seperator.join(tuple))
 
 # update wordlist.txt with complete_wordlist_final and print to console each word in complete_wordlist_final
 with open("wordlist.txt", "w") as f:
-    for word in complete_wordlist_final:
+    for word in complete_wordlist:
         f.write(word + "\n")
         print(word)
